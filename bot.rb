@@ -1,13 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require "bundler/inline"
-
-gemfile do
-  source "https://rubygems.org"
-  gem "matrix_sdk", :require => false
-end
-
 require "matrix_sdk"
 
 require_relative "lib/matrix_bot"
