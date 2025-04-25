@@ -4,6 +4,7 @@ require "matrix_sdk"
 
 require_relative "echo"
 require_relative "ping"
+require_relative "volunteer"
 
 class MatrixBot
   # A filter to simplify syncs
@@ -26,6 +27,7 @@ class MatrixBot
   COMMANDS = [
     Echo,
     Ping,
+    Volunteer,
   ].freeze
 
   def initialize(hs_url, access_token)
