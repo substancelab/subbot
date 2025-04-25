@@ -56,19 +56,11 @@ class MatrixBot
     msgstr = message.content[:body]
     return unless msgstr =~ /^!(ping|echo)\s*/
 
-    handle_ping(message) if msgstr.start_with? "!ping"
-    handle_echo(message) if msgstr.start_with? "!echo"
+    Ping.new(client).handle(message) if msgstr.start_with? "!ping"
+    Echo.new(client).handle(message) if msgstr.start_with? "!echo"
   rescue StandardError => e
     puts "[ERROR] in on_message: #{e.inspect}"
     raise
-  end
-
-  def handle_ping(message)
-    Ping.new(client).handle(message)
-  end
-
-  def handle_echo(message)
-    Echo.new(client).handle(message)
   end
 
   private
