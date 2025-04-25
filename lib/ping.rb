@@ -8,6 +8,16 @@ MS_PER_SECOND = 1_000.0
 class Ping
   attr_accessor :client
 
+  class << self
+    def command
+      "!ping"
+    end
+
+    def respond_to?(message)
+      message.start_with?(command)
+    end
+  end
+
   def initialize(client)
     @client = client
   end

@@ -3,6 +3,16 @@
 class Echo
   attr_reader :client
 
+  class << self
+    def command
+      "!echo"
+    end
+
+    def respond_to?(message)
+      message.start_with?(command)
+    end
+  end
+
   def initialize(client)
     @client = client
   end

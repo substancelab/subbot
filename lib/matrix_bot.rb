@@ -23,6 +23,11 @@ class MatrixBot
     },
   }.freeze
 
+  COMMANDS = [
+    Echo,
+    Ping,
+  ].freeze
+
   def initialize(hs_url, access_token)
     @hs_url = hs_url
     @token = access_token
@@ -53,11 +58,11 @@ class MatrixBot
   def on_message(message)
     return unless message.content[:msgtype] == "m.text"
 
-    msgstr = message.content[:body]
-    return unless msgstr =~ /^!(ping|echo)\s*/
+    msgstr = message.content[:body].strip
+    command = COMMANDS.find { |command| command.respond_to?(msgstr) }
+    return unless command
 
-    Ping.new(client).handle(message) if msgstr.start_with? "!ping"
-    Echo.new(client).handle(message) if msgstr.start_with? "!echo"
+    command.new(client).handle(message)
   rescue StandardError => e
     puts "[ERROR] in on_message: #{e.inspect}"
     raise
