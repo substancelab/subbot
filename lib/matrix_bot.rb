@@ -2,6 +2,7 @@
 
 require "matrix_sdk"
 
+require_relative "echo"
 require_relative "ping"
 
 class MatrixBot
@@ -67,17 +68,7 @@ class MatrixBot
   end
 
   def handle_echo(message)
-    msgstr = message.content[:body]
-    msgstr.gsub!(/!echo\s*/, "")
-
-    return if msgstr.empty?
-
-    room = client.ensure_room message.room_id
-    sender = client.get_user message.sender
-
-    puts "[#{Time.now.strftime '%H:%M'}] <#{sender.id} in #{room.id}> \"#{message.content[:body]}\""
-
-    room.send_notice(msgstr)
+    Echo.new(client).handle(message)
   end
 
   private
