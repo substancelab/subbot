@@ -10,24 +10,24 @@ end
 
 require "matrix_sdk"
 
-# A filter to simplify syncs
-BOT_FILTER = {
-  :presence => {:types => []},
-  :account_data => {:types => []},
-  :room => {
-    :ephemeral => {:types => []},
-    :state => {
-      :types => ["m.room.*"],
-      :lazy_load_members => true,
-    },
-    :timeline => {
-      :types => ["m.room.message"],
-    },
-    :account_data => {:types => []},
-  },
-}.freeze
-
 class MatrixBot
+  # A filter to simplify syncs
+  BOT_FILTER = {
+    :presence => {:types => []},
+    :account_data => {:types => []},
+    :room => {
+      :ephemeral => {:types => []},
+      :state => {
+        :types => ["m.room.*"],
+        :lazy_load_members => true,
+      },
+      :timeline => {
+        :types => ["m.room.message"],
+      },
+      :account_data => {:types => []},
+    },
+  }.freeze
+
   def initialize(hs_url, access_token)
     @hs_url = hs_url
     @token = access_token
