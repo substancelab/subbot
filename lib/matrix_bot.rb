@@ -66,7 +66,7 @@ class MatrixBot
 
     command.new(client).handle(message)
   rescue StandardError => e
-    puts "[ERROR] in on_message: #{e.inspect}"
+    $stderr.puts "[ERROR] in on_message: #{e.inspect}\n#{e.backtrace.join("\n")}"
     raise
   end
 
