@@ -30,9 +30,10 @@ class MatrixBot
     Volunteer,
   ].freeze
 
-  def initialize(hs_url, access_token)
+  def initialize(hs_url, username:, password:)
     @hs_url = hs_url
-    @token = access_token
+    @username = username
+    @password = password
   end
 
   def run
@@ -73,7 +74,11 @@ class MatrixBot
   private
 
   def client
-    @client ||= MatrixSdk::Client.new @hs_url, :access_token => @token, :client_cache => :none
+    @client ||= begin
+      c = MatrixSdk::Client.new @hs_url, :client_cache => :none
+      c.login @username, @password, :no_sync => true
+      c
+    end
   end
 
   def deep_copy(hash)

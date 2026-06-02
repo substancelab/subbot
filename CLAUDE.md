@@ -12,7 +12,7 @@ A Matrix chat bot written in Ruby using the `matrix_sdk` gem. It connects to a M
 bundle exec ruby bot.rb [-d] <homeserver_url>
 ```
 
-`ACCESS_TOKEN` must be set in the environment (e.g. via `.envrc` with direnv). The `-d` flag enables debug logging and sets `Thread.abort_on_exception = true`.
+`MATRIX_USERNAME` and `MATRIX_PASSWORD` must be set in the environment (e.g. via `.envrc` with direnv). The `-d` flag enables debug logging and sets `Thread.abort_on_exception = true`.
 
 ## Linting
 
