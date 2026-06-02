@@ -3,3 +3,4 @@
 source "https://rubygems.org"
 
 gem "matrix_sdk", :require => false
+gem "syslog"

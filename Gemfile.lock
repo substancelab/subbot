@@ -2,12 +2,15 @@ GEM
   remote: https://rubygems.org/
   specs:
     little-plugger (1.1.4)
+    logger (1.7.0)
     logging (2.4.0)
       little-plugger (~> 1.1)
       multi_json (~> 1.14)
     matrix_sdk (2.8.0)
       logging (~> 2)
     multi_json (1.15.0)
+    syslog (0.4.0)
+      logger
 
 PLATFORMS
   aarch64-linux
@@ -16,6 +19,7 @@ PLATFORMS
 
 DEPENDENCIES
   matrix_sdk
+  syslog
 
 BUNDLED WITH
    2.6.7
